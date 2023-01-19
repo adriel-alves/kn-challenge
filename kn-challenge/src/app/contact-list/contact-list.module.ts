@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import { ContactListRoutingModule } from './contact-list-routing.module';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
   imports: [
     CommonModule,
     ContactListRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule
   ]
 })
 export class ContactListModule { }
