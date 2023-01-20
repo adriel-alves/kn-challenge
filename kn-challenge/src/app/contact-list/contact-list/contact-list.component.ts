@@ -1,5 +1,8 @@
-import { Person } from './../model/person';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Person } from './../model/person';
+import { ContactListService } from './../services/contact-list.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -8,11 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactListComponent implements OnInit{
 
-  contactListDataSource: Person[] = [{_id: "1", name: "Homer Simpson", imgUrl: "https://vignette.wikia.nocookie.net/simpsons/images/b/bd/Homer_Simpson.png/revision/latest/scale-to-width-down/72?cb=20140126234206" }];
+  contactList$: Observable<Person[]>;
   displayedColumns=['name', 'imgUrl'];
 
-  constructor() {
-    // this.contactListDataSource = [];
+  constructor(private contactListService: ContactListService) {
+    this.contactList$ = contactListService.list();
   }
   ngOnInit(): void {
 
