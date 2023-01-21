@@ -9,7 +9,7 @@ import { Person } from './../model/person';
 })
 export class ContactListService {
 
-private readonly API = '/assets/contact-list1.json';
+private readonly API = 'http://localhost:8080/api/contact-list';
 
   constructor(private httpClient: HttpClient) { }
 
