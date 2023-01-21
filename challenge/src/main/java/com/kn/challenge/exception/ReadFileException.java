@@ -1,4 +1,4 @@
-package com.challenge.decathlon.exception;
+package com.kn.challenge.exception;
 
 public final class ReadFileException extends RuntimeException {
     public ReadFileException(String filePath) {
