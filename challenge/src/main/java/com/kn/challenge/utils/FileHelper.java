@@ -4,27 +4,34 @@ import com.kn.challenge.exception.FileNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 @Component
 public class FileHelper {
-    // private final String filePath = "/Users/adrielalves/workspace/challenge/challenge/src/main/resources/people.csv";
 
     public FileHelper() {
-        //this.filePath = filePath;
     }
 
     public File getFileFromResource() {
 
-        Path path = Paths.get("/Users/adrielalves/workspace/challenge/challenge/src/main/resources/people.csv");
-        File inputFile = new File(path.toUri());
+        String fileName = "people.csv";
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        File inputFile;
+        try {
+            inputFile = new File(Objects.requireNonNull(classLoader.getResource(fileName)).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
         if (inputFile.isFile()) {
             return inputFile;
         } else {
-            throw new FileNotFoundException("/Users/adrielalves/workspace/challenge/challenge/src/main/resources/people.csv");
+            throw new FileNotFoundException(fileName);
         }
-
     }
 }
