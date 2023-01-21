@@ -1,4 +1,4 @@
-package com.challenge.decathlon.exception;
+package com.kn.challenge.exception;
 
 public final class ImportFileException extends RuntimeException{
     public ImportFileException(){
