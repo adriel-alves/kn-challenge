@@ -1,7 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { BehaviorSubject, catchError, map, Observable, of, startWith } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, of, startWith } from 'rxjs';
 
 import { Page } from './interface/page';
 import { ContactListService } from './service/contactlistservice.service';
@@ -45,7 +45,13 @@ export class AppComponent {
           }
         ),
         startWith({appState: 'APP_LOADED', appData: this.responseSubject.value }),
-        catchError((error: HttpErrorResponse) => of({appState: 'APP_ERROR', error})),
+        catchError((error) => {
+          if (error.status === HttpStatusCode.NotFound)
+            return of({ appState: 'NOT_FOUND' });
+          else if (error.HttpErrorResponse === HttpStatusCode.InternalServerError)
+            return of({ appState: 'APP_ERROR', error });
+          else return EMPTY;
+        })
         )}
 
       goToNextOrPrevious(direction?: string, name?: string): void {

@@ -32,6 +32,9 @@
           </div>
         </ng-container>
         <h3>Contact List</h3>
+        <ng-container *ngSwitchCase="'NOT_FOUND'" >
+          <div class="alert alert-secondary" role="alert"> No Contact Found </div>
+        </ng-container>
         <ng-container *ngSwitchCase="'APP_LOADED'" >
           <table class="table table-striped">
             <thead>

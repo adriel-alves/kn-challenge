@@ -1,4 +1,4 @@
-package com.kn.challenge.model;
+package com.kn.challenge.domain;
 
 import javax.persistence.*;
 
