@@ -7,14 +7,14 @@ services:
   #Back-end Spring Boot Application
   challenge:
     #The docker file in challenge-app build the jar and provides the docker image with the following name.
-    build: ./challenge
+    build: ./kn-challenge-backend
     container_name: challenge-app
     ports:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
 
   #Fron-end Angular Application
   kn-challenge:
-    build: ./kn-challenge
+    build: ./kn-challenge-ui
     container_name: challenge-front
     ports:
       - 4200:80
