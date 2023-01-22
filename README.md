@@ -48,3 +48,8 @@ If you want to stop it use following command:
 ```
 $ docker-compose down
 ```
+
+The URL to the Conctact List is 
+```
+http://localhost:4200/
+```
