@@ -1,0 +1,22 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+#Define services
+services:
+
+  #Back-end Spring Boot Application
+  challenge:
+    #The docker file in challenge-app build the jar and provides the docker image with the following name.
+    build: ./challenge
+    container_name: challenge-app
+    ports:
+      - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+
+  #Fron-end Angular Application
+  kn-challenge:
+    build: ./kn-challenge
+    container_name: challenge-front
+    ports:
+      - 4200:80
+    links:
+      - challenge
