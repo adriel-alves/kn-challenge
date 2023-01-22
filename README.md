@@ -39,7 +39,7 @@ In order to run this application you need to install two tools: **Docker** & **D
 An entire application can be ran with a single command in a terminal:
 
 ```
-$ docker-compose up -d
+$ docker-compose up
 
 ```
 
@@ -52,4 +52,8 @@ $ docker-compose down
 The URL to the Conctact List is 
 ```
 http://localhost:4200/
+```
+If you want to run the applications isolated the kn-challenge-ui must run with the command:
+```
+npm run start
 ```
