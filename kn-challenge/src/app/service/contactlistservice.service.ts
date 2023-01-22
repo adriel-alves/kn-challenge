@@ -1,8 +1,8 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, tap } from 'rxjs';
-
-import { Person } from './../model/person';
+import { Observable } from 'rxjs';
+import { Page } from '../interface/page';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,6 @@ private readonly API = 'api/contact-list';
 
   constructor(private httpClient: HttpClient) { }
 
-  list(){
-    return this.httpClient.get<Person[]>(this.API)
-    .pipe(
-      first(),
-      delay(5000),
-      tap(contactList => console.log(contactList))
-      );
-  }
+  contactList$ = (name: string ='', page: number = 0, size: number = 10): Observable<Page> =>
+    this.httpClient.get<Page>(`${this.API}?name=${name}&page=${page}&size=${size}`);
 }
